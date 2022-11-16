@@ -17,6 +17,7 @@ export default class Game implements IGame {
         this.Table = new Table(10);
         this.Snake = new Snake({ row: 6, column: 3 })
         this.gameInterval = setInterval(this.bodyGameInterval.bind(this), 1000)
+        document.addEventListener("keypress", this.startListenersWASD.bind(this))
     }
 
     private bodyGameInterval() {
@@ -37,7 +38,11 @@ export default class Game implements IGame {
         return condition
     }
 
-   
-
+    private startListenersWASD(e: KeyboardEvent) {
+        if(e.key === 'w') this.Snake.changeDirection("up")
+        else if(e.key === 'a') this.Snake.changeDirection("left")
+        else if(e.key === 's') this.Snake.changeDirection("down")
+        else if(e.key === 'd') this.Snake.changeDirection("right")
+    }
 
 }
