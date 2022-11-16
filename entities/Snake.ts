@@ -1,21 +1,22 @@
 interface Position { row: number; column: number }
 
-type direction = "right" | "left" | "up" | "down"
+type Direction = "right" | "left" | "up" | "down"
 
 export interface ISnake {
     headPosition: Position;
     size: number;
     lastMovements: Position[];
-    direction: direction;
+    direction: Direction;
     spawn(): void 
     move(): void
+    changeDirection(direction: Direction): void
 }
 
 export default class Snake implements ISnake {
     headPosition: Position;
     size: number = 0;
     lastMovements: Position[] = [];
-    direction: direction = 'right';
+    direction: Direction = 'right';
 
     constructor(headPosition: Position) {
         this.headPosition = headPosition;
@@ -36,5 +37,9 @@ export default class Snake implements ISnake {
         }
         this.headPosition = directionAction[this.direction]
         console.log(this.headPosition);
+    }
+
+    public changeDirection(direction: Direction) {
+        if(direction !== this.direction) this.direction = direction
     }
 }
