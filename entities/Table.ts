@@ -11,12 +11,20 @@ export default class Table implements ITable {
     constructor(size: number) {
         this.size = size;
 
+        const $pCounter = document.createElement('p')
+        $pCounter.textContent = 'Points: '
+        const $spanCounter = document.createElement('span')
+        $spanCounter.textContent = '0'
+        $spanCounter.id = 'counter'
+        $pCounter.appendChild($spanCounter)
+        document.querySelector(".game")?.appendChild($pCounter)
+
         let row = 1;
         let column = 10;
 
         const $table = document.createElement('div');
         $table.classList.add('table');
-        $table.style.width = `${size * 50}px`
+        $table.style.width = `${size * 40}px`
 
         for(let i = 0; i < size * size; i++) {
             const $box = document.createElement('div');
@@ -38,7 +46,7 @@ export default class Table implements ITable {
         let row = 1;
         let column = 10;
         for(let i = 0; i < this.size * this.size; i++) {
-            const $box = getBox(row, column) as HTMLDivElement;
+            const $box = getBox({row, column}) as HTMLDivElement;
             $box.style.background = "none";
             if(column === 1) {
                 row += 1;
