@@ -1,3 +1,5 @@
+import { getBox } from "../utils/getBox.js";
+
 interface Position { row: number; column: number }
 
 type Direction = "right" | "left" | "up" | "down"
@@ -14,18 +16,25 @@ export interface ISnake {
 
 export default class Snake implements ISnake {
     headPosition: Position;
-    size: number = 0;
-    lastMovements: Position[] = [];
+    size: number = 1;
+    lastMovements: Position[];;
     direction: Direction = 'right';
 
     constructor(headPosition: Position) {
         this.headPosition = headPosition;
+        this.lastMovements = [{ row: headPosition.row, column: headPosition.column - 1}]
         this.spawn()
     }
 
     public spawn() {
-        const $box = document.getElementById(`row-${this.headPosition.row}/column-${this.headPosition.column}`) as HTMLDivElement;
-        $box.style.backgroundColor = "green";
+        const $box = getBox(this.headPosition.row, this.headPosition.column) as HTMLDivElement;
+        $box.style.backgroundColor = "#145c00";
+        for(let i = 0; i < this.lastMovements.length; i++) {
+            const bodyRow = this.lastMovements[i].row;
+            const bodyColumn = this.lastMovements[i].column;
+            const $bodyBox = getBox(bodyRow, bodyColumn) as HTMLDivElement;
+            $bodyBox.style.backgroundColor = "green";
+        }
     }
 
     public move() {
@@ -35,6 +44,7 @@ export default class Snake implements ISnake {
             "up": { ...this.headPosition, row: this.headPosition.row - 1 },
             "down": { ...this.headPosition , row: this.headPosition.row + 1}
         }
+        this.lastMovements[0] = this.headPosition
         this.headPosition = directionAction[this.direction]
         console.log(this.headPosition);
     }

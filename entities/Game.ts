@@ -30,7 +30,7 @@ export default class Game implements IGame {
     }
 
     private gameOver() {
-        const condition = this.Snake.headPosition.column === this.Table.size + 1 || this.Snake.headPosition.row === this.Table.size + 1
+        const condition = this.Snake.headPosition.column === this.Table.size + 1 || this.Snake.headPosition.row === this.Table.size + 1 || this.Snake.headPosition.column === 0 || this.Snake.headPosition.row === 0
         if(condition) {
             clearInterval(this.gameInterval)
         } 

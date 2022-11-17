@@ -1,3 +1,5 @@
+import { getBox } from "../utils/getBox.js";
+
 export interface ITable {
     size: number;
     clearTable(): void; 
@@ -36,7 +38,7 @@ export default class Table implements ITable {
         let row = 1;
         let column = 10;
         for(let i = 0; i < this.size * this.size; i++) {
-            const $box = document.getElementById(`row-${row}/column-${column}`) as HTMLDivElement;
+            const $box = getBox(row, column) as HTMLDivElement;
             $box.style.background = "none";
             if(column === 1) {
                 row += 1;
