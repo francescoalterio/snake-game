@@ -1,0 +1,23 @@
+{
+  "name": "snake-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/francescoalterio/snake-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/francescoalterio/snake-game/issues"
+  },
+  "homepage": "https://github.com/francescoalterio/snake-game#readme",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
+}
